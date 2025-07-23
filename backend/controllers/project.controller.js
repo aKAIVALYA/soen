@@ -13,7 +13,7 @@ export const createProject = async (req, res) => {
         const loggedInUser = await UserModel.findOne({ email: req.user.email });
         const userId = loggedInUser._id;
         const newProject = await projectService.createProject({ name, userId });
-        res.status(201).json(newProject);
+        res.status(201).json({ project: newProject });
     } catch (err) {
         console.log(err);
         res.status(400).send(err.message);

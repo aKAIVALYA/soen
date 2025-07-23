@@ -23,11 +23,14 @@ io.use(async (socket, next) => {
         const token = socket.handshake.auth.token || socket.handshake.headers.authorization?.split(' ')[1];
         const projectId = socket.handshake.query.projectId;
 
-        if (!mongoose.Types.ObjectId.isValid(projectId)) {
-            return next(new Error('Invalid project ID'));
+         if (!mongoose.Types.ObjectId.isValid(projectId)) {
+            return next(new Error('Invalid projectId'));
         }
 
-        socket.projectId = await projectModel.findById(projectId)
+
+        socket.project = await projectModel.findById(projectId);
+
+        
 
         if (!token) {
             return next(new Error('Authentication error'));
@@ -50,7 +53,7 @@ io.use(async (socket, next) => {
 
 
 io.on('connection',socket => {
-    socket.roomId = socket.projectId._id.toString();
+    socket.roomId = socket.project._id.toString();
 
    console.log('A user connected');
 

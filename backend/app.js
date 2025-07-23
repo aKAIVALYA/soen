@@ -10,7 +10,11 @@ connect();
 const app = express();
 
 
-app.use(cors());
+app.use(cors({
+    orign:'http://localhost:5173',
+    cardinals: true
+}
+));
 app.use(morgan('dev')); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

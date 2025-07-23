@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 function Home() {
   const { user } = useContext(UserContext);
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [projectName, setProjectName] = useState(null);
+  const [projectName, setProjectName] = useState("");
   const [project, setproject] = useState([])
 
   const navigate = useNavigate();
@@ -15,25 +15,35 @@ function Home() {
     e.preventDefault();
     console.log({ projectName })
 
-    axios.post('/projects/create', {
-      name: projectName,
-    }).then((res) => {
-      console.log(res)
-      setIsModalOpen(false);
-    }).catch((err) => {
-      console.log(err)
-    })
+    axios.post('/projects/create', { name: projectName })
+      .then((res) => {
+        console.log("CREATE RESPONSE:", res.data);
+
+        const newProject = res.data.project || res.data; // fallback if not nested
+
+        if (!newProject || !newProject._id) {
+          console.error("Invalid project response format");
+          return;
+        }
+
+        setproject([...project, newProject]);
+        setIsModalOpen(false);
+        setProjectName("");
+      })
+      .catch((err) => {
+        console.log("Error creating project:", err.response?.data || err.message);
+      });
   } 
 
-  useEffect(() => {
+ useEffect(() => {
+        axios.get('/projects/all').then((res) => {
+            setproject(res.data.projects)
 
-    axios.get('/projects/all').then((res) => {
-      console.log(res.data)
-      setproject(res.data.projects)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }, [])
+        }).catch(err => {
+            console.log(err)
+        })
+
+    }, [])
 
   return (
     <main className='p-4'>
@@ -45,27 +55,23 @@ function Home() {
           
           <i className="ri-flashlight-fill ml-2.5"></i> 
         </button>
-         {
-                    project.map((project) => (
-                        <div key={project._id}
-                            onClick={() => {
-                                navigate(`/project`, {
-                                    state: { project }
-                                })
-                            }}
-                            className="project flex flex-col gap-2 cursor-pointer p-4 border border-slate-300 rounded-md min-w-52 hover:bg-slate-200">
-                            <h2
-                                className='font-semibold'
-                            >{project.name}</h2>
+                  {project.map((proj, index) => {
+          if (!proj || !proj.name) return null;
 
-                            <div className="flex gap-2">
-                                <p> <small> <i className="ri-user-line"></i> Collaborators</small> :</p>
-                                {project.users.length}
-                            </div>
+          return (
+            <div key={proj._id || index}
+              onClick={() => navigate('/project', { state: { project: proj } })}
+              className="project flex flex-col gap-2 cursor-pointer p-4 border border-slate-300 rounded-md min-w-52 hover:bg-slate-200">
 
-                        </div>
-                    ))
-                }
+              <h2 className='font-semibold'>{proj.name}</h2>
+
+              <div className="flex gap-2">
+                <p><small><i className="ri-user-line"></i> Collaborators</small> :</p>
+                {proj.users?.length ?? 0}
+              </div>
+            </div>
+          );
+        })}
                 
       </div>
 
@@ -88,7 +94,10 @@ function Home() {
                 <button
                   type="button"
                   className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
-                  onClick={() => setIsModalOpen(false)}
+                  onClick={() =>{ setIsModalOpen(false);
+                    setProjectName("");
+
+                  }}
                 >
                   Cancel
                 </button>

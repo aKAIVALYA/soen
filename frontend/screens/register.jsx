@@ -19,10 +19,10 @@ const Register = () => {
         console.log(res.data);
         localStorage.setItem('token', res.data.token);
         setUser(res.data.user); 
-        navigate('/'); 
+        navigate('/login'); 
       })
       .catch((err) => {
-        console.error(err.response.data); // Log the error response
+        console.error(err.response.data); 
       });
     
   };

@@ -1,10 +1,19 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL:import.meta.env.VITE_API_URL ,
-    headers: {
-        "Authorization": `Bearer ${localStorage.getItem('token')}`,
-    }
-})
+  baseURL: import.meta.env.VITE_API_URL,
+});
 
-export default axiosInstance; 
+//  Interceptor to always attach latest token --- this is most important thing
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+export default axiosInstance;

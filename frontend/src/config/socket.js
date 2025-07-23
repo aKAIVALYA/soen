@@ -22,4 +22,4 @@ export const receiveMessage = (eventName, cb) => {
 
 export const sendMessage = (eventName, data) => {
     socketInstance.emit(eventName, data);
-}
+} 
