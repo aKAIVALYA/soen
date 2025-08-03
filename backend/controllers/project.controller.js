@@ -8,7 +8,8 @@ export const createProject = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    try {
+    
+     try {
         const { name } = req.body;
         const loggedInUser = await UserModel.findOne({ email: req.user.email });
         const userId = loggedInUser._id;

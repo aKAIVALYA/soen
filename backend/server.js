@@ -13,14 +13,16 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = new Server(server,{
     cors: {
-        origin:'*'
+        origin:'*',
     }
 });
 
 io.use(async (socket, next) => {
     try{
 
-        const token = socket.handshake.auth.token || socket.handshake.headers.authorization?.split(' ')[1];
+        const token = 
+        socket.handshake.auth?.token || 
+        socket.handshake.headers.authorization?.split(' ')[1];
         const projectId = socket.handshake.query.projectId;
 
          if (!mongoose.Types.ObjectId.isValid(projectId)) {
@@ -28,7 +30,7 @@ io.use(async (socket, next) => {
         }
 
 
-        socket.project = await projectModel.findById(projectId);
+       socket.project = await projectModel.findById(projectId);
 
         
 
@@ -52,23 +54,22 @@ io.use(async (socket, next) => {
 })
 
 
-io.on('connection',socket => {
+io.on('connection', socket => {
     socket.roomId = socket.project._id.toString();
 
-   console.log('A user connected');
+    // Log which user is joining which room
+    console.log(`User ${socket.user.email || socket.user._id} connected to room ${socket.roomId}`);
 
-   socket.join(socket.roomId);
+    socket.join(socket.roomId);
 
     socket.on('project-message', data => {
+        socket.broadcast.to(socket.roomId).emit('project-message', data);
+        console.log('Message in room', socket.roomId, ':', data);
+    });
 
-       socket.broadcast.to(socket.roomId).emit('project-message', data);
-
-         console.log(data);
-
-    })
-
-  socket.on('event', data => { /* … */ });
-  socket.on('disconnect', () => { /* … */ });
+    socket.on('disconnect', () => {
+        console.log(`User ${socket.user.email || socket.user._id} disconnected from room ${socket.roomId}`);
+    });
 });
 
 

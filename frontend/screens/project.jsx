@@ -138,11 +138,11 @@ const Project = () => {
           </header>
           <div className="users flex flex-col gap-2">
 
-            {project.users && project.users.map(user => {
+            {project.users && project.users.map((user, idx) => {
 
                return (
 
-               <div key={user._id} className="user cursor-pointer hover:bg-slate-300 p-2 flex gap-2 items-center">
+               <div key={user._id || user.email || idx} className="user cursor-pointer hover:bg-slate-300 p-2 flex gap-2 items-center">
                 <div className='aspect-square rounded-full w-fit h-fit flex items-center justify-center p-5 text-white bg-slate-600'>
                   <i className="ri-user-fill absolute"></i>
                 </div>
@@ -165,9 +165,9 @@ const Project = () => {
               </button>
             </header>
             <div className="users-list flex flex-col gap-2 mb-16 max-h-96 overflow-auto">
-              {users.map(user => (
+              {users.map((user, idx) => (
                 <div
-                  key={user._id}
+                  key={user._id || user.email || idx}
                   className={`user cursor-pointer hover:bg-slate-200 ${Array.from(selectedUserId).indexOf(user._id) !=-1 ? 'bg-slate-200' : ''} p-2 flex gap-2 items-center`} 
                   onClick={() => handleUserClick(user._id)}
                 >

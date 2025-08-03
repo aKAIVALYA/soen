@@ -3,8 +3,13 @@ import socket from 'socket.io-client';
 let socketInstance = null;
 
 export const initializeSocket = (projectId) => {
+    // Disconnect previous socket if exists
+    if (socketInstance) {
+        socketInstance.disconnect();
+        socketInstance = null;
+    }
 
-    socketInstance = socket(import.meta.env.VITE_API_URL,{
+    socketInstance = socket(import.meta.env.VITE_API_URL, {
         auth: {
             token: localStorage.getItem('token')
         },
@@ -14,12 +19,23 @@ export const initializeSocket = (projectId) => {
     });
 
     return socketInstance;
-}
+};
+
+export const disconnectSocket = () => {
+    if (socketInstance) {
+        socketInstance.disconnect();
+        socketInstance = null;
+    }
+};
 
 export const receiveMessage = (eventName, cb) => {
-    socketInstance.on(eventName, cb);  
-}
+    if (socketInstance) {
+        socketInstance.on(eventName, cb);
+    }
+};
 
 export const sendMessage = (eventName, data) => {
-    socketInstance.emit(eventName, data);
-} 
+    if (socketInstance && socketInstance.connected) {
+        socketInstance.emit(eventName, data);
+    }
+};
