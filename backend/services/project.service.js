@@ -34,7 +34,7 @@ export const getAllProject = async ({userId}) => {
     }
 
     const allUserProjects = await projectModel.find({
-        users: [userId]
+        users: userId
     })
 
     return allUserProjects;
@@ -105,3 +105,4 @@ export const getProjectById = async ({ projectId }) => {
     return project;
 }
 
+ 
