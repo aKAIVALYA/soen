@@ -22,7 +22,11 @@ const Login = () => {
 
             navigate('/');
         }).catch((err) => {
-            console.error(err.res.data); 
+            if (err.response && err.response.data) {
+                console.error(err.response.data);
+            } else {
+                console.error('Network error or server not responding:', err.message);
+            }
         })
    
   };
