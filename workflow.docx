@@ -1,0 +1,55 @@
+
+|FRONTEND =>
+
+1.created routers
+2.then check whther pags are working with routeres or not
+3.make frontend for login register
+4.use axios to integrate fromtendd with 
+
+VITE_API_KEY in env variable but still i am using http://localhost:3000/ every place to correct it
+
+
+5.backend p data hota h toh usko koi bhi access na krle cors policy rok ke rkte h  toh me alag se enable krna hota h
+
+6.login register integrate
+
+7.use usercontext provider wrap thee approutes under userprovider
+
+8.develop home
+9.use remixicon for +- 
+
+10.implemented project.jsx ui whole and integrate dew functions like add collaborator get all projects with backend
+
+11.use socketio client and make config/socket.js
+
+12.ai send data in markdown format so npm i markdow-to-jsx
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+|BACKEND =>
+
+1.first th data will come to server.js to app.js then user.routes.js then user.controller.js then user.services.js then models and db 
+
+2.middleware are responible of handing data between client and server they are generally used for error handling parse data , authentication
+
+3.Redis stores data in ram thats why it is faster
+
+4.made frontend basic login register pages using routers than use axios to connext backend with frontend
+ 
+5.make project.model.js 
+
+6.config socket.io for real time chat applications
+7.created a middleware so to conclude that an authenticate user connect to socketio
+
+
+8.created ai routes
+
+9.make code editor ui 
+
+10.created web containers web containers can run server on browser
+
+11.checck documentation of webcontainer we need data in specific format in order to run
+
+12.webconatiner can create webserver but hte webserver run tin the same tab so we have created iframe
