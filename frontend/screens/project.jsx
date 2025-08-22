@@ -365,8 +365,8 @@ const ProjectPage = () => {
 
         {iframeUrl && webContainer && 
 
-        (<div className="fle min-w-96 flex-col h-full flex flex-grow  ">
-          <div className="address-bar">
+        (<div className="fle min-w-96 flex-col h-full flex flex-grow rounded-2xl overflow-hidden ">
+          <div className="address-bar mb-3 ">
             <input type="text"
               onChange={(e) => setIframeUrl(e.target.value)} 
              value={iframeUrl} className="w-full p-2 bg-slate-200 "/>
