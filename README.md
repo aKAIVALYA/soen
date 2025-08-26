@@ -1,8 +1,10 @@
 
 
-# 🚀 Full-Stack Project  
+# 🚀 CWM.ai [code with me] 
+ 
 
-This project is a **full-stack web application** with authentication, project collaboration, AI-powered features, and real-time chat using **Socket.io**. It is divided into **Frontend** and **Backend** modules.  
+>✨ A collaborative code editor powered by AI with real-time teamwork.  
+>🌐 Comes with an in-browser runtime and dynamic route handling for seamless project execution.  
 
 
 
@@ -54,6 +56,57 @@ This project is a **full-stack web application** with authentication, project co
 
 ### Steps Implemented  
 
-1. Request flow:  
+1. Request flow:
+
+2. Used **Middleware** for:  
+- Error handling  
+- Data parsing  
+- Authentication  
+3. Configured **CORS** to prevent unauthorized access.  
+4. Created **project.model.js** for project schema.  
+5. Setup **Socket.io** for chat functionality.  
+- Middleware ensures only authenticated users connect.  
+6. Built **AI Routes**.  
+7. Implemented **Code Editor UI**.  
+8. Added **WebContainers** for running server in-browser.  
+- Requires specific input format.  
+- Since web server runs in the same tab, used **iframe** for sandboxing.  
+
+---
 
 
+Click the ▶ RUN button in your console/browser environment.
+Wait a few seconds while all packages download.
+Once finished, click the RUN button again.
+The app will now open inside an iframe.
+check your console logs to see the results.
+
+After edited on contaner RUN one more time. 
+
+
+
+### 🔑 Environment Variables  
+
+Create `.env` files in **both frontend and backend** folders.  
+
+---
+
+#### 📂 Frontend  and Backend
+```env
+VITE_API_KEY=http://localhost:3000
+
+PORT=3000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+REDIS_URL=redis://localhost:6379
+
+🏃 Run Instructions
+▶ Start Backend
+cd backend
+npm install
+npm run dev
+
+▶ Start Frontend
+cd frontend
+npm install
+npm run dev
