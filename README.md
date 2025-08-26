@@ -1,66 +1,59 @@
-🚀 collab-soen [mern] 
-
-This project is a full-stack web application with authentication, project collaboration,
-AI-powered features, and real-time chat using Socket.io.
-It is divided into Frontend and Backend modules.
-
-📌 Features
-
-🔐 Authentication (Login & Register with JWT)
-📂 Project Management (Create projects, add collaborators, fetch all projects)
-💬 Real-time Chat (via Socket.io)
-🤖 AI Integration (AI responses rendered in Markdown format)
-📝 Code Editor with WebContainers (Run code in-browser using iFrame)
-
-🔹 3. Run the App
-
-Click the ▶ RUN button in your console/browser environment.
-Wait a few seconds while all packages download.
-Once finished, click the RUN button again.
-The app will now open inside an iframe.
-Check your console logs to see the results.
 
 
-🔑 Environment Variables
-Frontend (.env)
-VITE_API_KEY=http://localhost:3000
-Backend (.env)
-PORT=3000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-REDIS_URL=redis://localhost:6379
+# 🚀 Full-Stack Project  
 
-📡 Socket.io Setup
-
-Frontend: config/socket.js
-Backend: Auth middleware for verifying user before connection.
-
-📸 UI Previews
-
-🔐 Login / Register
-🏠 Home Page
-📂 Project Management
-💬 Chat with Socket.io
-🤖 AI Response in Markdown
-📝 Code Editor with WebContainers
-
-
-⚙️ Installation
-1. Clone Repository
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-
-2. Setup Backend
-cd backend
-npm install
-npm run dev
-
-3. Setup Frontend
-cd frontend
-npm install
-npm run dev
+This project is a **full-stack web application** with authentication, project collaboration, AI-powered features, and real-time chat using **Socket.io**. It is divided into **Frontend** and **Backend** modules.  
 
 
 
+## 📌 Features  
+
+- 🔐 **Authentication** (Login & Register with JWT)  
+- 📂 **Project Management** (Create projects, add collaborators, fetch all projects)  
+- 💬 **Real-time Chat** (via Socket.io)  
+- 🤖 **AI Integration** (AI responses rendered in Markdown format)  
+- 📝 **Code Editor with WebContainers** (Run code in-browser using iFrame)  
+
+---
+
+## ⚡ Frontend  
+
+### Tech Stack  
+- **React + Vite**  
+- **React Router** for navigation  
+- **Axios** for API calls  
+- **Context API** for global state  
+- **RemixIcon** for UI icons  
+- **Markdown-to-JSX** for rendering AI output  
+- **Socket.io Client** for real-time updates  
+
+### Steps Implemented  
+
+1. Created **React Router** and tested all routes.  
+2. Built frontend for **Login** & **Register** pages.  
+3. Integrated backend using **Axios**.  
+   - Note: API requests are hardcoded with `http://localhost:3000/` (needs refactor to use `VITE_API_KEY`).  
+4. Wrapped app routes with **UserContext Provider**.  
+5. Developed **Home Page UI**.  
+6. Implemented **Project.jsx UI** with functions:  
+   - Add Collaborator  
+   - Get All Projects (connected with backend)  
+7. Configured **Socket.io Client** (`config/socket.js`).  
+8. Installed **markdown-to-jsx** to render AI responses.  
+
+---
+
+## ⚡ Backend  
+
+### Tech Stack  
+- **Node.js + Express.js**  
+- **MongoDB + Mongoose** for database  
+- **Redis** for caching  
+- **Socket.io** for real-time communication  
+- **WebContainers API** for running code inside the browser  
+
+### Steps Implemented  
+
+1. Request flow:  
 
 
