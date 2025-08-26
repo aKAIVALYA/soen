@@ -81,7 +81,8 @@ Once finished, click the RUN button again.
 The app will now open inside an iframe.
 check your console logs to see the results.
 
-After edited on contaner RUN one more time. 
+>After edited on contaner RUN one more time. and 
+>use / to navigate routes. 
 
 
 
