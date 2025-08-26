@@ -41,6 +41,9 @@ Backend: Auth middleware for verifying user before connection.
 🏠 Home Page
 📂 Project Management
 💬 Chat with Socket.io
+🤖 AI Response in Markdown
+📝 Code Editor with WebContainers
+
 
 ⚙️ Installation
 1. Clone Repository
@@ -56,8 +59,7 @@ npm run dev
 cd frontend
 npm install
 npm run dev
-🤖 AI Response in Markdown
-📝 Code Editor with WebContainers
+
 
 
 
