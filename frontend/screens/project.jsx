@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import axios from "../src/config/axios";
 import {initializeSocket,receiveMessage,sendMessage,} from "../src/config/socket";
 import Markdown from "markdown-to-jsx";
-import hljs from "highlight.js";
+import 'highlight.js/styles/nord.css';
+import hljs from 'highlight.js';
 import { getWebContainer } from "../src/config/webContainer";
 import { UserContext } from "../src/context/user.context";
 
@@ -252,8 +253,9 @@ const ProjectPage = () => {
       <section className="right  flex-grow h-full flex">
         <div className="explorer h-full max-w-64 min-w-52  bg-slate-200">
           <div className="file-tree">
-            {Object.keys(fileTree).map((file, index) => (
+            {Object.keys(fileTree || {}).map((file, index) => (
               <button
+                key={index}
                 onClick={() => {
                   setcurrentFile(file);
                   setOpenFiles(Array.from(new Set([...openFiles, file])));

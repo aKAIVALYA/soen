@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_KEY);
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-2.5-flash",
   generationConfig: {
     responseMimeType: "application/json",
     temperature: 0.2,
@@ -95,7 +95,6 @@ const model = genAI.getGenerativeModel({
       </example>
     
        IMPORTANT : don't use file name like routes/index.js and Dont use "/" in the file names, always use camelCase for file names and always use the file name as the key in the fileTree object, always return the fileTree object in the response, always return the buildCommand and startCommand in the response, always return the text in the response, always return the response in json format, always return the response with status code 200, never return any other status code, never return any other format than json, never return any other mime type than application/json also dont use null in files also  waya and dont forget to use . in naming the packages and dont use port 3000 use anything except 3000.
-
 
        
        
