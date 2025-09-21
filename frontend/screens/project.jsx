@@ -328,7 +328,7 @@ const ProjectPage = () => {
           </div>
 
           <div className="bottom flex flex-grow max-w-full shrink overflow-auto">
-            {fileTree[currentFile] && (
+            {fileTree && currentFile && fileTree[currentFile] && fileTree[currentFile].file && (
               <div className="code-editor-area h-full overflow-auto flex-grow bg-slate-50">
                 <pre className="hljs h-full">
                   <code
@@ -350,7 +350,7 @@ const ProjectPage = () => {
                     dangerouslySetInnerHTML={{
                       __html: hljs.highlight(
                         "javascript",
-                        fileTree[currentFile].file.contents
+                        fileTree[currentFile]?.file?.contents || ""
                       ).value,
                     }}
                     style={{
