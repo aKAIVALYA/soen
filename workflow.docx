@@ -41,8 +41,8 @@ VITE_API_KEY in env variable but still i am using http://localhost:3000/ every p
 5.make project.model.js 
 
 6.config socket.io for real time chat applications
-7.created a middleware so to conclude that an authenticate user connect to socketio
 
+7.created a middleware so to conclude that an authenticate user connect to socketio
 
 8.created ai routes
 
@@ -52,4 +52,4 @@ VITE_API_KEY in env variable but still i am using http://localhost:3000/ every p
 
 11.checck documentation of webcontainer we need data in specific format in order to run
 
-12.webconatiner can create webserver but hte webserver run tin the same tab so we have created iframe
+12.webconatiner can create webserver but the webserver run the same tab so we have created iframe
