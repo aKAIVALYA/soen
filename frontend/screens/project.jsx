@@ -134,7 +134,7 @@ const ProjectPage = () => {
         .get(`/projects/get-project/${location.state.project._id}`)
         .then((res) => {
           setProject(res.data.project);
-          setfileTree(res.data.project.fileTree );
+          setfileTree(res.data.project.fileTree || {});
         })
         .catch((err) => {
           console.log(err);
@@ -252,7 +252,7 @@ const ProjectPage = () => {
       <section className="right  flex-grow h-full flex">
         <div className="explorer h-full max-w-64 min-w-52  bg-slate-200">
           <div className="file-tree">
-            {Object.keys(fileTree).map((file, index) => (
+            {Object.keys(fileTree || {}).map((file, index) => (
               <button
                 onClick={() => {
                   setcurrentFile(file);
